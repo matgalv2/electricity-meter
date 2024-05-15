@@ -2,13 +2,25 @@ from fastapi import FastAPI
 
 
 from model import Tariff, Accounting, UserID
+from fastapi.middleware.cors import CORSMiddleware
 from service import Service
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/users/{userID}")
 async def get_user(userID: UserID):
     return Service.getUser(userID)
+
 
 @app.get("/users/{userID}/settings")
 async def get_user(userID: UserID):
