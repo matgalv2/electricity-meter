@@ -36,3 +36,7 @@ async def get_usage(userID: UserID):
 async def get_predicted_usage(userID: UserID):
     return Service.getNDaysPredictedUsage(7, True)
 
+@app.get("/users/{userID}/get-future-usage")
+async def get_predicted_usage(userID: UserID):
+    return Service.getNDaysPredictedUsage(7)
+
