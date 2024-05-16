@@ -45,7 +45,7 @@ class Service(object):
         for i in range(len(usage_from_range.values)):
             data.append({
                 "date": usage_from_range.iloc[i]["date"].strftime('%Y-%m-%d'),
-                "value": usage_from_range.iloc[i]["value"],
+                "value": round(usage_from_range.iloc[i]["value"], 3)
             })
 
         return data
@@ -65,7 +65,7 @@ class Service(object):
         return [
             {
                 "date": dates[i],
-                "value": predicted_values[i]
+                "value": round(predicted_values[i],3)
             } for i in range(len(predicted_values))
         ]
 
